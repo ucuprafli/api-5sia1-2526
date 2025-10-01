@@ -31,9 +31,9 @@ class Product extends Model
     {
         // Use Illuminate/support/Facades/Storage;
         return Attribute::make(
-            // getL format data saat dipanggil di database
-            get: fn() => Storage::disk('public')->url
-            ($this->image_path),
+            // get: format data saat dipanggil di database
+            // ternary (short) if untuk memeriksa kolom image_path
+            get: fn() => $this->image_path ? Storage::url($this->image_path) : null,
             // set: format data yang akan disimpan di database
         );
     }
